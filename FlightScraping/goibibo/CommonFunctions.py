@@ -39,7 +39,6 @@ def DestinationData(DESTINATIONCITY:str, DRIVER):
 def TravelTimeData(DATE:str,WEEK:str,MONTH:str,YEAR:str, DRIVER):
     DayPickercption = DRIVER.find_element('xpath', "//div//div[contains(@class, 'DayPicker-Caption')]//div")
     Days = DayPickercption.get_attribute('innerText').split(" ")
-    print(Days)
 
     while((MONTH != Days[0]) and (YEAR != Days[1])):
         DRIVER.find_element('xpath', '//span[contains(@class, "DayPicker-NavButton--next")]').click()
