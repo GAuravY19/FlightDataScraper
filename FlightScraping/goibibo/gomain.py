@@ -4,10 +4,9 @@ import os
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from Multicity import UserInputs, MidCityBox
-from oneway import OnewayUserInputs
-from CommonFunctions import SourceData, DestinationData, TravelTimeData, TrvlClsData, FareType, Search
-from roundTrip import RoundUserInputs
+from gooneway import OnewayUserInputs
+from goCommonFunctions import SourceData, DestinationData, TravelTimeData, TrvlClsData, FareType, Search
+from goroundTrip import RoundUserInputs
 # --------------------------------------------------------------------------------------------------------
 
 def ClearDiaBox():
@@ -65,46 +64,5 @@ if __name__ == "__main__":
 
         TravelTimeData(RETURNDATE, RETURNWEEKS, RETURNMONTH, RETURNYEAR, DRIVER)
         TrvlClsData(NUMADULTS, NUMCHILDS, NUMINFANTS, TRAVELCLASS, DRIVER)
-        FareType(FARETYPE, DRIVER)
-        Search(DRIVER)
-
-
-
-
-
-    elif TRIPTYPE.lower() == "multiway" or TRIPTYPE.lower() == 'multi-way':
-        # ------------------------------------------ SELECTING THE MULTICITY OPTION ---------------------------------------------------------
-
-        roundbox = DRIVER.find_element('xpath', '//ul/li/p[contains(text(), "Multi-city")]')
-        roundbox.click()
-
-        # ------------------------------------------------------------------------------------------------------------
-
-
-        FROMCITY, MIDCITY, DESTINATIONCITY, FIRSTDATE, FIRSTWEEKS, FIRSTMONTH, FIRSTYEAR, SECONDDATE, SECONDMONTH, SECONDWEEKS, SECONDYEAR, NUMADULTS, NUMCHILDS, NUMINFANTS, TRAVELCLASS, FARETYPE = UserInputs()
-
-        SourceData(FROMCITY, DRIVER)
-        MidCityBox(MIDCITY, DRIVER)
-        TravelTimeData(FIRSTDATE, FIRSTWEEKS, FIRSTMONTH, FIRSTYEAR, DRIVER)
-        TrvlClsData(NUMADULTS, NUMCHILDS, NUMINFANTS, TRAVELCLASS, DRIVER)
-
-        # ----------------------------------------------ENTERING THE DESTINATION BOX DATA -------------------------------------------------------
-
-        Destbox = DRIVER.find_element('xpath', '//div/p[contains(text(),"Enter city or airport")]')
-        Destbox.click()
-
-        Destboxclick = DRIVER.find_element('xpath', '//span[contains(text(), "To")]/following-sibling::input[@value = ""]')
-        Destboxclick.send_keys(DESTINATIONCITY)
-
-        time.sleep(1)
-
-        FirstDest = DRIVER.find_element('xpath', '//span[@class = "autoCompleteTitle "]')
-        FirstDest.click()
-
-        time.sleep(1)
-
-        # -------------------------------------------------------------------------------------------------------------------
-
-        TravelTimeData(SECONDDATE, SECONDWEEKS, SECONDMONTH, SECONDYEAR, DRIVER)
         FareType(FARETYPE, DRIVER)
         Search(DRIVER)

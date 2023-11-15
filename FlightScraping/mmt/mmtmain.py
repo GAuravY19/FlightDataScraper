@@ -3,23 +3,67 @@
 import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.action_chains import ActionChains
+from mmtoneway import OneWayInputs
+from mmtCommonFunctions import SourceCity, DestinationCity, TravelTime, TravelClass, submit
+from mmtroundTrip import RoundTripInputs, Onboarding
+import time
 
 # ------------------------------------------------------------------------------------------------------------
 
 
 
-# ------------------------------------------- SELENIUM SETUP ------------------------------------------------
 
-options = Options()
-options.add_experimental_option('detach', True)
+if __name__ == "__main__":
 
-os.environ['PATH'] = r'D:/WebScrapping/WebDrivers/'
+    # ------------------------------------------- SELENIUM SETUP ------------------------------------------------
 
-driver = webdriver.Chrome(options=options)
-driver.get('https://www.makemytrip.com/')
-driver.maximize_window()
+    options = Options()
+    options.add_experimental_option('detach', True)
 
-# ----------------------------------------------------------------------------------------------------------
+    os.environ['PATH'] = r'D:/WebScrapping/WebDrivers/'
+
+    DRIVER = webdriver.Chrome(options=options)
+    DRIVER.get('https://www.makemytrip.com/')
+    DRIVER.maximize_window()
+
+    time.sleep(7)
+    x = 196
+    y = 440
+
+    action = ActionChains(DRIVER)
+    action.move_by_offset(x,y).click().perform()
+
+    time.sleep(2)
+
+    dialogbx = DRIVER.find_element('xpath', "//span[@class='commonModal__close']")
+    dialogbx.click()
+
+    # ----------------------------------------------------------------------------------------------------------
 
 
+    TRIPTYPE = input("Enter the trip type : ")
+
+    if TRIPTYPE.lower() == "oneway":
+        SOURCECITY, DESTINATIONCITY, DATE, DAY, MONTH, YEAR, ADULTS, CHILD, INFANTS, CLASS = OneWayInputs()
+
+        SourceCity(DRIVER, SOURCECITY)
+        DestinationCity(DRIVER, DESTINATIONCITY)
+        TravelTime(DRIVER, DATE, DAY, MONTH, YEAR)
+        TravelClass(DRIVER, ADULTS, CHILD, INFANTS, CLASS)
+        submit(DRIVER)
+
+
+    elif TRIPTYPE.lower() == 'roundtrip':
+
+        round = DRIVER.find_element('xpath', '//li[@data-cy = "roundTrip"]/span')
+        round.click()
+
+        SOURCECITY, DESTINATIONCITY, ONBOARDDATE, ONBOARDDAY, ONBOARDMONTH, ONBOARDYEAR, RETURNDATE, RETURNDAY, RETURNMONTH, RETURNYEAR, ADULTS, CHILD, INFANTS, CLASS = RoundTripInputs()
+
+        SourceCity(DRIVER, SOURCECITY)
+        DestinationCity(DRIVER, DESTINATIONCITY)
+        Onboarding(DRIVER, ONBOARDDATE, ONBOARDDAY, ONBOARDMONTH, ONBOARDYEAR)
+        Onboarding(DRIVER, RETURNDATE, RETURNDAY, RETURNMONTH,RETURNYEAR)
+        TravelClass(DRIVER, ADULTS, CHILD, INFANTS, CLASS)
+        submit(DRIVER)

@@ -1,6 +1,6 @@
 import time
-from ShortWeek import ShortWeeks
-from ShortYear import shortMonths
+from goShortWeek import ShortWeeks
+from goShortYear import shortMonths
 
 def SourceData(FROMCITY:str, DRIVER):
     FirstBox = DRIVER.find_element('xpath','//div/span[contains(text(),"From")]/following-sibling:: p[@class="sc-12foipm-20 bhnHeQ"]')
