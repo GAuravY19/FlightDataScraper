@@ -1,7 +1,13 @@
-from pynput import *
+data = {
+    "comp":[]
+}
 
-def get_coords(x,y):
-    print(x,y)
+data["comp"].append(1)
+data["comp"].append(1)
+data["comp"].append(1)
+data["comp"].append(1)
+data["comp"].append(1)
+data["comp"].append(1)
 
-with mouse.Listener(on_move=get_coords) as listen:
-    listen.join()
+
+print(data["comp"])

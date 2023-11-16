@@ -4,9 +4,15 @@ import os
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from gooneway import OnewayUserInputs
+from gooneway import OnewayUserInputs, ScrappingGoibibo
 from goCommonFunctions import SourceData, DestinationData, TravelTimeData, TrvlClsData, FareType, Search
 from goroundTrip import RoundUserInputs
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
+import pandas as pd
+
 # --------------------------------------------------------------------------------------------------------
 
 def ClearDiaBox():
@@ -47,8 +53,7 @@ if __name__ == "__main__":
         FareType(FARETYPE, DRIVER)
         Search(DRIVER)
 
-
-
+        ScrappingGoibibo(DRIVER)
 
     elif TRIPTYPE.lower() == "roundway" or TRIPTYPE.lower() == 'round-way':
         roundbox = DRIVER.find_element('xpath', '//ul/li/p[contains(text(), "Round-trip")]')
