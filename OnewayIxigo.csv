@@ -1,0 +1,16 @@
+,Company Name,Departure Time,Deboarding Time,Trip Hour,Layover,Price
+0,AIR INDIA,21:00,23:10,2hr 10min,non-stop,22100
+1,AIR INDIA,07:00,09:15,2hr 15min,non-stop,95800
+2,AIR INDIA,10:00,12:15,2hr 15min,non-stop,22116
+3,AIR INDIA,13:00,15:15,2hr 15min,non-stop,37292
+4,AIR INDIA,19:00,21:15,2hr 15min,non-stop,25868
+5,AIR INDIA,08:00,10:20,2hr 20min,non-stop,25868
+6,AIR INDIA,09:00,11:20,2hr 20min,non-stop,25868
+7,AIR INDIA,16:00,18:20,2hr 20min,non-stop,22407
+8,AIR INDIA,18:00,20:20,2hr 20min,non-stop,22548
+9,AIR INDIA,15:35,18:00,2hr 25min,non-stop,22407
+10,AIR INDIA,07:40,11:10,3hr 30min,1 stop,22548
+11,VISTARA,06:30,08:25,1hr 55min,non-stop,22548
+12,VISTARA,05:55,07:55,2hr,non-stop,22548
+13,VISTARA,21:55,00:10,2hr 15min,non-stop,22407
+14,VISTARA,19:10,21:15,2hr 5min,non-stop,22407
