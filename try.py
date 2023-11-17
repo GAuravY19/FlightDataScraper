@@ -1,13 +1,7 @@
-data = {
-    "comp":[]
-}
+import datetime
 
-data["comp"].append(1)
-data["comp"].append(1)
-data["comp"].append(1)
-data["comp"].append(1)
-data["comp"].append(1)
-data["comp"].append(1)
+a = "12:00"
+b = "14:00"
 
-
-print(data["comp"])
+time = datetime.datetime.strptime(a, '%H:%M')
+print(time)
