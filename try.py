@@ -1,7 +1,10 @@
-import datetime
+p = ['BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'BOM', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL', 'DEL']
 
-a = "12:00"
-b = "14:00"
+c = 0
 
-time = datetime.datetime.strptime(a, '%H:%M')
-print(time)
+for i in p:
+    if i == 'DEL':
+        c+=1
+
+
+print(c)
