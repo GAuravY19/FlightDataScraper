@@ -45,6 +45,11 @@ def OneWayInputs():
 #
 
 def OnewayScrapper(DRIVER):
+
+    '''
+        This function scraps the data for one way trip.
+    '''
+
     time.sleep(2)
 
     scroll_pos_init = DRIVER.execute_script("return window.pageYOffset;")

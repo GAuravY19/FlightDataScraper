@@ -1,4 +1,5 @@
 import time
+import pandas as pd
 # --------------------------------------- INFO FROM USER ---------------------------------------------------------
 
 # TRIPTYPE = input("Enter the trip type : ")
@@ -37,6 +38,11 @@ def OneWayInputs():
 
 
 def ScrapingIxigoOneway(DRIVER):
+
+    '''
+        This function is created for scrapping the One way data.
+    '''
+
     time.sleep(20)
 
     scroll_pos_init = DRIVER.execute_script("return window.pageYOffset;")

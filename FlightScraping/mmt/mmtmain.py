@@ -37,13 +37,16 @@ if __name__ == "__main__":
 
     time.sleep(2)
 
-    dialogbx = DRIVER.find_element('xpath', "//span[@class='commonModal__close']")
-    dialogbx.click()
+    try:
+        dialogbx = DRIVER.find_element('xpath', "//span[@class='commonModal__close']")
+        dialogbx.click()
 
+    except:
+        pass
     # ----------------------------------------------------------------------------------------------------------
 
 
-    TRIPTYPE = input("Enter the trip type : ")
+    TRIPTYPE = input('Select whether you want to have "One-Way" or "Round-Way" trip : ')
 
     if TRIPTYPE.lower() == "oneway":
         SOURCECITY, DESTINATIONCITY, DATE, DAY, MONTH, YEAR, ADULTS, CHILD, INFANTS, CLASS = OneWayInputs()
@@ -63,8 +66,26 @@ if __name__ == "__main__":
         except:
             pass
 
-
         OnewayScrapper(DRIVER)
+
+
+    elif TRIPTYPE.lower() == 'roundway':
+        SOURCECITY, DESTINATIONCITY, ONBOARDDATE, ONBOARDDAY, ONBOARDMONTH, ONBOARDYEAR, RETURNDATE, RETURNDAY, RETURNMONTH, RETURNYEAR, ADULTS, CHILD, INFANTS, CLASS = RoundTripInputs()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

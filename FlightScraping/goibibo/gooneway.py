@@ -55,6 +55,11 @@ def OnewayUserInputs():
 # ----------------------------------------- SCROLLING THE WEBPAGE SLOWLY ------------------------------------------------
 
 def ScrappingGoibibo(DRIVER):
+
+    '''
+        This function is created for Scrapping the data for one way trip.
+    '''
+
     time.sleep(20)
 
     scroll_pos_init = DRIVER.execute_script("return window.pageYOffset;")

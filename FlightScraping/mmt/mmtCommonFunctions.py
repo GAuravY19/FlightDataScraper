@@ -3,7 +3,12 @@ from mmtShortWeek import ShortWeeks
 from mmtShortYear import shortMonths
 
 # ------------------------------------------ ENTERING THE SOURCE DATA ----------------------------------------------
+
 def SourceCity(DRIVER, SOURCECITY:str):
+
+    '''
+        This function is created for selecting the Source airport name.
+    '''
 
     time.sleep(1)
 
@@ -20,7 +25,13 @@ def SourceCity(DRIVER, SOURCECITY:str):
 
 
 # ------------------------------------------ ENTER DESTINATION DATA ----------------------------------------------
+
 def DestinationCity(DRIVER, DESTINATIONCITY:str):
+
+    '''
+        This function is created for selecting the Destination airport name.
+    '''
+
     time.sleep(1)
 
     destboxdata = DRIVER.find_element('xpath', '//label[@for = "toCity"]/span[@class="lbl_input appendBottom10" and text() = "To"]/following-sibling::input')
@@ -39,6 +50,11 @@ def DestinationCity(DRIVER, DESTINATIONCITY:str):
 # ------------------------------------------ ENTER TRAVEL TIME DATA ----------------------------------------------
 
 def TravelTime(DRIVER, DATE:int, DAY:str, MONTH:str, YEAR:int):
+
+    '''
+        This function is created for selecting the departure schedule.
+    '''
+
     monthcap = DRIVER.find_elements('xpath', '//div[@class="DayPicker-Caption"]')
     monthcapd = monthcap[0].get_attribute('innerText').split(" ")
 
@@ -67,6 +83,11 @@ def TravelTime(DRIVER, DATE:int, DAY:str, MONTH:str, YEAR:int):
 # ------------------------------------------ ENTERING TRAVELLERS DATA ----------------------------------------------
 
 def TravelClass(DRIVER, ADULTS:int, CHILD:int, INFANTS:int, CLASS:str):
+
+    '''
+        This function is created for selecting the travel class information.
+    '''
+
 
     trvlbox = DRIVER.find_element('xpath', '//label[@for = "travellers"]//span[contains(text(), "Travellers")]')
     trvlbox.click()
@@ -104,7 +125,13 @@ def TravelClass(DRIVER, ADULTS:int, CHILD:int, INFANTS:int, CLASS:str):
 
 
 # ------------------------------------------ SUBMIT BUTTON ----------------------------------------------
+
 def submit(DRIVER):
+
+    '''
+        This function is created for clicking on the search button.
+    '''
+
     searchbtn = DRIVER.find_element('xpath', '//p[@data-cy="submit"]//a[@class="primaryBtn font24 latoBold widgetSearchBtn " and text() = "Search"]')
     searchbtn.click()
 

@@ -17,6 +17,11 @@ month = {
 
 
 def MonthToNum(MONTH:str):
+
+    '''
+        This function was created for converting the months to their numerical equivalent.
+    '''
+
     for i,j in month.items():
         if i == MONTH:
             MONTH = j

@@ -5,7 +5,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from gooneway import OnewayUserInputs, ScrappingGoibibo
-from goCommonFunctions import SourceData, DestinationData, TravelTimeData, TrvlClsData, FareType, Search
+from goCommonFunctions import SourceData, DestinationData, TravelTimeData, TrvlClsData, Search
 from goroundTrip import RoundUserInputs
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -25,6 +25,7 @@ def ClearDiaBox():
 
 
 if __name__ == "__main__":
+
 # -------------------------------------------- DRIVER SETUP ---------------------------------------------
 
     options = Options()
@@ -42,7 +43,9 @@ if __name__ == "__main__":
 
 # ----------------------------------------------------------------------------------------------------
 
-    TRIPTYPE = input('Select whether you want to have "One-Way" or "Round-Way" or "Multi-way" trip : ')
+    TRIPTYPE = input('Select whether you want to have "One-Way" or "Round-Way" trip : ')
+
+# -------------------------------------------- ONEWAY TRIP ---------------------------------------------
 
     if TRIPTYPE.lower() == "oneway" or TRIPTYPE.lower() == 'one-way':
         FROMCITY, DESTINATIONCITY, DATE, WEEKS, MONTH, YEAR, NUMADULTS, NUMCHILDS, NUMINFANTS, TRAVELCLASS, FARETYPE = OnewayUserInputs()
@@ -50,10 +53,15 @@ if __name__ == "__main__":
         DestinationData(DESTINATIONCITY, DRIVER)
         TravelTimeData(DATE, WEEKS, MONTH, YEAR, DRIVER)
         TrvlClsData(NUMADULTS, NUMCHILDS, NUMINFANTS, TRAVELCLASS, DRIVER)
-        FareType(FARETYPE, DRIVER)
         Search(DRIVER)
 
         ScrappingGoibibo(DRIVER)
+
+# ----------------------------------------------------------------------------------------------------
+
+
+
+# -------------------------------------------- ROUND WAY TRIP ---------------------------------------------
 
     elif TRIPTYPE.lower() == "roundway" or TRIPTYPE.lower() == 'round-way':
         roundbox = DRIVER.find_element('xpath', '//ul/li/p[contains(text(), "Round-trip")]')
@@ -69,7 +77,6 @@ if __name__ == "__main__":
         returnbox.click()
 
         TravelTimeData(RETURNDATE, RETURNWEEKS, RETURNMONTH, RETURNYEAR, DRIVER)
-        FareType(FARETYPE, DRIVER)
         Search(DRIVER)
 
         time.sleep(20)
@@ -125,12 +132,7 @@ if __name__ == "__main__":
         RETURNDURATION = []
         RETURNPRICE = []
         RETURNLAYOVER = []
-
         DEPARTURE = []
-
-        print(departcode)
-        print(boardcode)
-
 
 
         for i in range(len(dpart)):
@@ -144,8 +146,6 @@ if __name__ == "__main__":
                 SOURCEARRIVAL.append(dboard[i].get_attribute('innerText'))
                 SOURCEARRIVALTIME.append(dboardtime[i].get_attribute('innerText'))
 
-
-
             else: # is it equal to DEL
                 COMPANYNAMER.append(comp[i].get_attribute('innerText'))
                 RETURNDEPARTURE.append(dpart[i].get_attribute('innerText'))
@@ -156,14 +156,7 @@ if __name__ == "__main__":
                 RETURNARRIVAL.append(dboard[i].get_attribute('innerText'))
                 RETURNARRIVALTIME.append(dboardtime[i].get_attribute('innerText'))
 
-        print(len(COMPANYNAMED))
-        print(len(SOURCEDEPARTURE))
-        print(len(SOURCEDEPARTURETIME))
-        print(len(SOURCEARRIVAL))
-        print(len(SOURCEARRIVALTIME))
-        print(len(SOURCELAYOVER))
-        print(len(SOURCEPRICE))
-        print(len(SOURCEDURATION))
+
 
         SORDATA = {
                 "Company Name": [],
@@ -201,7 +194,6 @@ if __name__ == "__main__":
 
         SORDATA = SORDATA.transpose()
 
-        print('done')
         for i in range(len(COMPANYNAMER)):
             RENDATA['Company Name'].append(COMPANYNAMER[i])
             RENDATA['Source city'].append(RETURNDEPARTURE[i])
@@ -216,43 +208,7 @@ if __name__ == "__main__":
 
         RENDATA = RENDATA.transpose()
 
-        pd.concat([SORDATA, RENDATA], axis='columns').to_csv('FinalRound.csv')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        pd.concat([SORDATA, RENDATA], axis='columns').to_csv('GoibiboRound.csv')
 
 
 

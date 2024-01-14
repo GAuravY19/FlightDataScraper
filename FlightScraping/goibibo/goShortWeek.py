@@ -9,6 +9,11 @@ Week = {
 }
 
 def ShortWeeks(day:str):
+
+    '''
+        This function is created for Converting the full name of the weekdays to their short forms.
+    '''
+
     for i,j in Week.items():
         if i == day:
             day = j

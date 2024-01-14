@@ -14,6 +14,11 @@ Month = {
 }
 
 def shortMonths(Mon:str):
+
+    '''
+        This function is created for Converting the full name of the Months to their short forms.
+    '''
+
     for i,j in Month.items():
         if i == Mon:
             Mon = j

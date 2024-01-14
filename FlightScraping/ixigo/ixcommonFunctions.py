@@ -4,6 +4,11 @@ from MonthNum import MonthToNum
 # --------------------------------------- ENTERING SOURCE DATA ---------------------------------------------------------
 
 def SourceCity(DRIVER, SOURCECITY:str):
+
+    '''
+        This function is created for selecting the Source airports name.
+    '''
+
     sourcebox = DRIVER.find_element('xpath','//div[@class="c-input-cntr"]/div[contains(text(),"From")]')
     sourcebox.click()
 
@@ -26,6 +31,11 @@ def SourceCity(DRIVER, SOURCECITY:str):
 # --------------------------------------- ENTERING DESTINATION DATA ---------------------------------------------------------
 
 def DestinationCity(DRIVER, DESTINATIONCITY:str):
+
+    '''
+        This function is created for selecting the Destination airports name.
+    '''
+
     destboxdata = DRIVER.find_element('xpath', '//div[contains(text(), "To")]/following-sibling::input')
     destboxdata.send_keys(DESTINATIONCITY)
 
@@ -40,6 +50,12 @@ def DestinationCity(DRIVER, DESTINATIONCITY:str):
 # --------------------------------------------- ENTER PASSENGER DATA ------------------------------------------------
 
 def PassengerData(DRIVER, ADULTS:int, CHILD:int, INFANTS:int, CLASS:str):
+
+    '''
+        This function is created for selecting the passenger data.
+    '''
+
+
     try:
         trvlclas = DRIVER.find_element('xpath','//div[@class="c-input-cntr"]/label[@class="input-label" and text() = "Travellers | Class"]')
         trvlclas.click()
@@ -71,6 +87,11 @@ def PassengerData(DRIVER, ADULTS:int, CHILD:int, INFANTS:int, CLASS:str):
 
 # --------------------------------------------- START SEARCHING FOR DATA ------------------------------------------------
 def Search(DRIVER):
+
+    '''
+        This function is created for clicking on the search button.
+    '''
+
     search = DRIVER.find_element('xpath','//button[contains(text(), "Search")]')
     search.click()
 
@@ -80,6 +101,11 @@ def Search(DRIVER):
 # --------------------------------------- ENTERING ONBOARDING TIME DATA ---------------------------------------------------------
 
 def OnboardingDate(DRIVER, DATE:int, MONTH:str, YEAR:str):
+
+    '''
+        This function is created for selecting the schedules of the passengers.
+    '''
+
     onboarmonthhead = DRIVER.find_element('xpath', f'//button[contains(@class,"rd-back")]/following-sibling::div[text()]')
     new = onboarmonthhead.get_attribute('innerText').split(" ")
 

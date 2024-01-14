@@ -3,6 +3,11 @@ from goShortWeek import ShortWeeks
 from goShortYear import shortMonths
 
 def SourceData(FROMCITY:str, DRIVER):
+
+    '''
+        This Functions is created for selecting the Source airports name.
+    '''
+
     FirstBox = DRIVER.find_element('xpath','//div/span[contains(text(),"From")]/following-sibling:: p[@class="sc-12foipm-20 bhnHeQ"]')
     FirstBox.click()
 
@@ -22,6 +27,11 @@ def SourceData(FROMCITY:str, DRIVER):
 
 # --------------------------------------------- ENTERING DESTINATION DATA -------------------------------------------------------
 def DestinationData(DESTINATIONCITY:str, DRIVER):
+
+    '''
+        This Functions is created for selecting the Destination airports name.
+    '''
+
     DestTextBox = DRIVER.find_element('xpath', '//div/span[contains(text(),"To")]/following-sibling::input')
     DestTextBox.send_keys(DESTINATIONCITY)
 
@@ -37,6 +47,11 @@ def DestinationData(DESTINATIONCITY:str, DRIVER):
 
 
 def TravelTimeData(DATE:str,WEEK:str,MONTH:str,YEAR:str, DRIVER):
+
+    '''
+        This Functions is created for selecting the Departure schedule.
+    '''
+
     DayPickercption = DRIVER.find_element('xpath', "//div//div[contains(@class, 'DayPicker-Caption')]//div")
     Days = DayPickercption.get_attribute('innerText').split(" ")
 
@@ -61,6 +76,11 @@ def TravelTimeData(DATE:str,WEEK:str,MONTH:str,YEAR:str, DRIVER):
 
 
 def TrvlClsData(Adults:int, children:int, infants:int, Class:str, DRIVER):
+
+    '''
+        This Functions is created for selecting the Travel Class Data.
+    '''
+
     if Adults > 1:
         AdultsBox = DRIVER.find_element('xpath', '//p[contains(text(), "Adults")]/following-sibling::div/span[contains(text(),"1")]')
         DRIVER.execute_script(f"arguments[0].innerText = '{Adults}' ", AdultsBox)
@@ -95,31 +115,12 @@ def TrvlClsData(Adults:int, children:int, infants:int, Class:str, DRIVER):
     time.sleep(1)
 
 
-
-def FareType(faretype:str, DRIVER):
-    time.sleep(1)
-
-    if faretype.lower() == 'regular':
-        pass
-
-    elif faretype.lower() == 'armed forces':
-        armfare = DRIVER.find_element('xpath','//ul/li/span[@class = "sc-12foipm-2 isUBMc" and text() = "armed forces"]')
-        armfare.click()
-
-    elif faretype.lower() == "senior citizen":
-        senfare = DRIVER.find_element('xpath', '//ul/li/span[@class = "sc-12foipm-2 isUBMc" and text() = "senior citizen"]')
-        senfare.click()
-
-    elif faretype.lower() == "student":
-        stdfare = DRIVER.find_element('xpath', '//ul/li/span[@class = "sc-12foipm-2 isUBMc" and text() = "student"]')
-        stdfare.click()
-
-    elif (faretype.lower() == 'doctors') or (faretype.lower() == 'doctors'):
-        docfare = DRIVER.find_element('xpath', '//ul/li/span[contains(text(), "doctors")]')
-        docfare.click()
-
-
 def Search(DRIVER):
+
+    '''
+        This function is created for clicking on the search button.
+    '''
+
     time.sleep(1)
 
     searchbox = DRIVER.find_element('xpath', '//div/span[contains(text(), "SEARCH FLIGHTS")]')

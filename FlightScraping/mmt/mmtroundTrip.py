@@ -51,6 +51,11 @@ def RoundTripInputs():
 
 # # ------------------------------------------ ENTER ONBOARDING TRAVEL TIME DATA ----------------------------------------------
 def Onboarding(DRIVER,DATE, DAY, MONTH, YEAR):
+
+    '''
+        This function is created for selecting the onboarding the information.
+    '''
+
     monthcap = DRIVER.find_elements('xpath', '//div[@class="DayPicker-Caption"]')
     monthcapd = monthcap[0].get_attribute('innerText').split(" ")
 

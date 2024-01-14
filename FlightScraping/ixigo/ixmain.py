@@ -4,18 +4,13 @@ import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from ixroundTrip import RoundTripInputs, ReturnDate
+from ixroundTrip import RoundTripInputs, ReturnDate, RoundTripScraper
 from ixcommonFunctions import SourceCity, DestinationCity, OnboardingDate, PassengerData, Search
 from ixoneway import OneWayInputs, ScrapingIxigoOneway
-import pandas as pd
 import time
 
 
 # -----------------------------------------------------------------------------------------------------------------
-
-
-
-
 
 
 if __name__ == "__main__":
@@ -50,13 +45,6 @@ if __name__ == "__main__":
         ScrapingIxigoOneway(DRIVER)
 
 
-
-
-
-
-
-
-
     elif TRIPTYPE.lower() == 'roundtrip' or TRIPTYPE.lower() == 'round-trip':
         # INPUTS FROM THE USER
         SOURCECITY, DESTINATIONCITY, ONBOARDDATE, ONBOARDMONTH, ONBOARDYEAR, RETURNDATE, RETURNMONTH, RETURNYEAR, ADULTS, CHILD, INFANTS, CLASS, FARETYPE = RoundTripInputs()
@@ -77,3 +65,5 @@ if __name__ == "__main__":
         ReturnDate(DRIVER, ONBOARDDATE, RETURNDATE, RETURNMONTH, RETURNYEAR)
         PassengerData(DRIVER, ADULTS, CHILD, INFANTS, CLASS)
         Search(DRIVER)
+
+        RoundTripScraper(DRIVER)
